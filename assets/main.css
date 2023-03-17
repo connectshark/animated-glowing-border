@@ -1,5 +1,19 @@
 :root {
+  --clr-1: #1A919C;
+  --clr-2: #316469;
+  --clr-3: #0E4B50;
+  --clr-4: #49959C;
+  --clr-5: #27D8E8;
+}
 
+@property --rotate-degree {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes rotate {
+  0% { --rotate-degree: 0deg }
+  100% { --rotate-degree: 360deg }
 }
 
 * {
@@ -9,7 +23,7 @@
 }
 
 body {
-  background-color: #E6EFFF;
+  background-color: #111;
   height: 100svh;
   display: grid;
   place-items: center;
@@ -18,5 +32,48 @@ body {
 .card {
   height: 60svh;
   width: 300px;
-  background-color: #fff;
+  background-color: #222;
+  position: relative;
+  border-radius: 2rem;
+  max-height: 400px;
+  display: grid;
+  place-items: center;
+  color: #222;
+  transition: color .3s ease;
+}
+
+.card:hover {
+  color: #fff;
+}
+
+.card::after,
+.card::before {
+  position: absolute;
+  border-radius: inherit;
+  z-index: -1;
+  content: '';
+  inset: -.5rem;
+  background-image: conic-gradient(
+    from var(--rotate-degree),
+    var(--clr-5),
+    var(--clr-4),
+    var(--clr-3),
+    var(--clr-2),
+    var(--clr-1),
+    var(--clr-2),
+    var(--clr-3),
+    var(--clr-4),
+    var(--clr-5)
+  );
+  animation: rotate 20s linear infinite alternate;
+  transition: opacity .3s ease;
+}
+.card::before {
+  scale: 1.1;
+  filter: blur(20px);
+}
+
+.card:hover::after,
+.card:hover::before {
+  opacity: 0;
 }
