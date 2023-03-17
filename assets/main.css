@@ -65,7 +65,7 @@ body {
     var(--clr-4),
     var(--clr-5)
   );
-  animation: rotate 20s linear infinite alternate;
+  animation: rotate 10s linear infinite alternate;
   transition: opacity .3s ease;
 }
 .card::before {
